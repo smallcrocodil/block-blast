@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Block Blast</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="app-header">
+      <h1>Block Blast</h1>
+      <div class="score-panel">
+        <div class="score-item">
+          <span>Score</span>
+          <strong id="score-value">0</strong>
+        </div>
+        <div class="score-item">
+          <span>High Score</span>
+          <strong id="highscore-value">0</strong>
+        </div>
+      </div>
+    </header>
+
+    <main class="game-area">
+      <section class="board-area">
+        <div id="board-grid" class="board-grid" aria-label="game board"></div>
+      </section>
+
+      <aside class="preview-area">
+        <h2>Next Blocks</h2>
+        <div id="waiting-area" class="waiting-area" aria-label="next blocks">
+          <div class="waiting-slot" data-slot="0"></div>
+          <div class="waiting-slot" data-slot="1"></div>
+          <div class="waiting-slot" data-slot="2"></div>
+        </div>
+      </aside>
+    </main>
+
+    <footer class="controls">
+      <button id="restart-button" type="button">Restart</button>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
