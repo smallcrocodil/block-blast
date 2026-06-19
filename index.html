@@ -3,13 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Block Blast</title>
+  <title>피하기 게임</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="app-shell">
     <header class="app-header">
-      <h1>Block Blast</h1>
+      <div>
+        <h1>피하기 게임</h1>
+        <p class="subtitle">우클릭으로 이동 방향을 지정하고 배경을 움직여 공격을 피하세요.</p>
+      </div>
       <div class="score-panel">
         <div class="score-item">
           <span>Score</span>
@@ -22,23 +25,56 @@
       </div>
     </header>
 
-    <main class="game-area">
-      <section class="board-area">
-        <div id="board-grid" class="board-grid" aria-label="game board"></div>
+    <main class="game-main">
+      <section class="game-stage">
+        <canvas id="game-canvas" width="900" height="600" aria-label="game canvas"></canvas>
+
+        <div class="game-overlay" id="start-overlay">
+          <div class="overlay-panel">
+            <h2>게임 시작</h2>
+            <p>우클릭으로 캐릭터 이동 방향을 설정하면 배경과 공격이 반대 방향으로 움직입니다.</p>
+            <div class="form-row">
+              <label for="difficulty-select">난이도</label>
+              <select id="difficulty-select">
+                <option value="easy">쉬움 (초원)</option>
+                <option value="normal">보통 (정글)</option>
+                <option value="hard">어려움 (지옥)</option>
+              </select>
+            </div>
+            <button id="start-button" type="button">게임 시작</button>
+          </div>
+        </div>
+
+        <div class="game-overlay hidden" id="game-over-overlay">
+          <div class="overlay-panel">
+            <h2>게임 오버</h2>
+            <p>최종 점수</p>
+            <strong id="final-score">0</strong>
+            <div class="form-row">
+              <label for="player-name">이름 입력</label>
+              <input id="player-name" type="text" maxlength="12" placeholder="닉네임" />
+            </div>
+            <button id="submit-score-button" type="button">랭킹 등록</button>
+            <button id="play-again-button" type="button">다시 하기</button>
+          </div>
+        </div>
       </section>
 
-      <aside class="preview-area">
-        <h2>Next Blocks</h2>
-        <div id="waiting-area" class="waiting-area" aria-label="next blocks">
-          <div class="waiting-slot" data-slot="0"></div>
-          <div class="waiting-slot" data-slot="1"></div>
-          <div class="waiting-slot" data-slot="2"></div>
+      <aside class="sidebar">
+        <div class="panel difficulty-panel">
+          <h2>난이도 정보</h2>
+          <p id="difficulty-description">쉬움: 초원 배경, 적은 공격 빈도, 낮은 속도.</p>
+        </div>
+
+        <div class="panel ranking-panel">
+          <h2>랭킹</h2>
+          <ol id="ranking-list" class="ranking-list"></ol>
         </div>
       </aside>
     </main>
 
     <footer class="controls">
-      <button id="restart-button" type="button">Restart</button>
+      <button id="restart-button" type="button">메인 화면</button>
     </footer>
   </div>
 
